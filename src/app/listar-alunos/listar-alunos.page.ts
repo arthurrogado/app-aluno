@@ -9,7 +9,10 @@ import { Router } from '@angular/router';
 })
 export class ListarAlunosPage implements OnInit {
 
-  constructor(public dados : DadosService, public rota : Router) { }
+  constructor(
+    public dados : DadosService,
+    public rota : Router
+  ) { }
 
   ngOnInit() {
   }

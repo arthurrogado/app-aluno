@@ -25,8 +25,12 @@ export class DadosService {
     this.alunos.push(this.novoAluno);
   }
 
+  public editarAluno(index : number, nome : string, sexo : string, telefone : string, matricula : string, bilingue : boolean, cursos : string[]) {
+    this.novoAluno = new Aluno(nome, sexo, telefone, matricula, bilingue, cursos);
+    this.alunos.splice(index, 1, this.novoAluno)
+  }
+
   public visualizarAluno(aluno : Aluno) {
-    console.log('VISUALIZAR ALUNO')
     this.indice = this.alunos.indexOf(aluno);
     this.rota.navigate(['visualizar-aluno/'+this.indice]);
   }

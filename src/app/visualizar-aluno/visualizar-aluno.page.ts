@@ -19,12 +19,12 @@ export class VisualizarAlunoPage implements OnInit {
 
   ngOnInit() {
 
-  this.rota.params.subscribe((parametros : any) => {
-    this.indice = parametros.item;
-  })
+    this.rota.params.subscribe((parametros : any) => {
+      this.indice = parametros.id;
+    })
 
-  this.aluno = this.dados.getAlunos()[this.indice];
-  console.log(this.aluno.name)
+    this.aluno = this.dados.getAlunos()[this.indice];
+    console.log(this.aluno.name)
 
   }
 

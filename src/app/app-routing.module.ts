@@ -21,7 +21,19 @@ const routes: Routes = [
   },
   {
     path: 'visualizar-aluno',
+    redirectTo: 'listar-alunos'
+  },
+  {
+    path: 'visualizar-aluno/:id',
     loadChildren: () => import('./visualizar-aluno/visualizar-aluno.module').then( m => m.VisualizarAlunoPageModule)
+  },
+  {
+    path: 'editar-aluno',
+    redirectTo: 'listar-alunos'
+  },
+  {
+    path: 'editar-aluno/:indice',
+    loadChildren: () => import('./editar-aluno/editar-aluno.module').then( m => m.EditarAlunoPageModule)
   }
 ];
 
