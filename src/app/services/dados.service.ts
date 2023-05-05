@@ -15,6 +15,10 @@ export class DadosService {
     return this.alunos;
   }
 
+  public getIndexFromAluno(aluno : Aluno) {
+    return this.alunos.indexOf(aluno);
+  }
+
   public encaminharEdicao(aluno : Aluno) {
     this.indice = this.alunos.indexOf(aluno);
     this.rota.navigate(['/editar-aluno/'+this.indice]);
@@ -38,10 +42,12 @@ export class DadosService {
   public excluirAluno(aluno : Aluno) {
     this.indice = this.alunos.indexOf(aluno);
     this.alunos.splice(this.indice, 1);
+    this.rota.navigate(['listar-alunos']);
   }
 
-  public validarMatricula(matricula : string) {
-    if(this.alunos.map(aluno => aluno.matricula).includes(matricula)) {
+  public validarMatricula(matricula : string, except : string = '-1') {
+    let matriculas = this.alunos.map(aluno => aluno.matricula);
+    if(matriculas.includes(matricula) && !matriculas.includes(except) ) {
       return false;
     } else {
       return true;

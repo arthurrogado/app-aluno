@@ -24,7 +24,7 @@ export class VisualizarAlunoPage implements OnInit {
     })
 
     this.aluno = this.dados.getAlunos()[this.indice];
-    console.log(this.aluno.name)
+    console.log(this.aluno.nome)
 
   }
 

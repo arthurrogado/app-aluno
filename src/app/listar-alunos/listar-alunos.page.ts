@@ -21,4 +21,8 @@ export class ListarAlunosPage implements OnInit {
     this.rota.navigate(['/adicionar-aluno']);
   }
 
+  abrirConfirmacaoExclusao(indice : number) {
+    
+  }
+
 }

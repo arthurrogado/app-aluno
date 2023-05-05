@@ -33,9 +33,23 @@
           Exibir
         </ion-item-option>
 
-        <ion-item-option color="danger" expandable (click)="dados.excluirAluno(aluno)">
+        <ion-item-option color="danger" expandable id="confirmationToDeleteModal_{{dados.getIndexFromAluno(aluno)}}">
           Excluir
         </ion-item-option>
+
+        <ion-modal id="confirmationToDeleteModal_{{dados.getIndexFromAluno(aluno)}}" #modal trigger="confirmationToDeleteModal_{{dados.getIndexFromAluno(aluno)}}">
+          <ng-template>
+            <div class="wrapper">
+              <h1>Certeza?</h1>
+              <p>Tem certeza que deseja excluir o aluno {{aluno.nome}} ?</p>
+              <ion-button color="primary" (click)="modal.dismiss()">Não</ion-button>
+              <ion-button color="danger" (click)="dados.excluirAluno(aluno); modal.dismiss()">Sim</ion-button>
+            </div>
+          </ng-template>
+        </ion-modal>
+
+
+
       </ion-item-options>
 
     </ion-item-sliding>

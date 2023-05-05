@@ -29,16 +29,25 @@ export class EditarAlunoPage implements OnInit {
 
   ngOnInit() {
     this.rota.params.subscribe((parametros : any) => {
-      this.indice = parametros.id;
+      this.indice = parametros.indice;
     })
 
+    console.log(this.indice)
+
     this.aluno = this.dados.getAlunos()[this.indice];
-    console.log(this.aluno.name)
+    console.log(this.aluno.nome)
+    this.nome = this.aluno.nome;
+    this.sexo = this.aluno.sexo;
+    this.telefone = this.aluno.telefone;
+    this.matricula = this.aluno.matricula;
+    this.bilingue = this.aluno.bilingue;
+    this.cursos = this.aluno.cursos;
+
   }
 
   editar() {
     if (this.nome) {
-      if(this.dados.validarMatricula(this.matricula)) {
+      if(this.dados.validarMatricula(this.matricula, this.matricula)) {
         this.dados.editarAluno(this.indice ,this.nome, this.sexo, this.telefone, this.matricula, this.bilingue, this.cursos);
         this.router.navigate(['/visualizar-aluno/' + this.indice]);
         this.exibirMensagem('Aluno editado com sucesso', 3000, 'success');
