@@ -25,4 +25,20 @@ export class ListarAlunosPage implements OnInit {
     
   }
 
+  testeApi() {
+    console.log('TESTANDO A API')
+
+    let bodyFd = new FormData();
+    bodyFd.append('acao', 'nome');
+
+    fetch('http://localhost:80/api_ionic/api.php', {
+      method: 'POST',
+      body: bodyFd
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+    })
+  }
+
 }

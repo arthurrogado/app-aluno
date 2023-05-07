@@ -6,13 +6,29 @@ import { Router } from '@angular/router';
 })
 export class DadosService {
 
-  alunoInicial : Aluno = new Aluno('João', 'Masculino', '999999999', '123456', true, ['Inglês', 'Espanhol'])
+  alunoInicial : Aluno = new Aluno('João', 'Masculino', '999999999', '123456', true, ['Angular', 'Java'])
   alunos : Aluno[] = [this.alunoInicial];
   novoAluno : Aluno;
   indice : number;
 
+  api_url : string = 'http://localhost:80/api_ionic/api.php';
+
   public getAlunos() {
     return this.alunos;
+  }
+
+  public dbGetAlunos() {
+    let bodyFd = new FormData();
+    bodyFd.append('acao', 'getAlunos');
+
+    fetch(this.api_url, {
+      method: 'POST',
+      body: bodyFd
+    })
+    .then(response => response.json())
+    .then(alunos => {
+      return alunos
+    })
   }
 
   public getIndexFromAluno(aluno : Aluno) {
