@@ -46,7 +46,6 @@
     <ion-select [(ngModel)]="cursosAluno" [multiple]="true" label="Cursos TI" label-placement="floating" aria-label="Cursos TI">
       <ion-select-option *ngFor="let curso of cursos" [value]="curso.id"> {{curso.nome}} </ion-select-option>
     </ion-select>
-    <ion-button (click)="cursosSelecionados()">Print cursos selecionados</ion-button>
   </ion-item>
 
   <ion-item>

@@ -51,11 +51,6 @@ export class AdicionarAlunoPage implements OnInit {
     })
   }
 
-  cursosSelecionados() {
-    console.log('CURSOS SELECIONADOS')
-    console.log(this.cursosAluno)
-  }
-
   async exibirMensagem(mensagem : any, duration : any, color : any) {
     const toast = await this.toast.create({
       message: mensagem,
