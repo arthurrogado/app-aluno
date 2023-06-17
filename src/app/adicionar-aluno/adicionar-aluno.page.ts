@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DadosService } from '../services/dados.service';
+import { Curso, DadosService } from '../services/dados.service';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 
@@ -15,7 +15,8 @@ export class AdicionarAlunoPage implements OnInit {
   telefone : string;
   matricula : string;
   bilingue : boolean = false;
-  cursos : string[];
+  cursos : Curso[];
+  cursosAluno : Curso[] = [];
 
   constructor(
     public dados : DadosService,
@@ -23,11 +24,12 @@ export class AdicionarAlunoPage implements OnInit {
     public toast : ToastController
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.cursos = await this.dados.getCursos();
   }
 
   cadastrar() {
-    if (this.nome) {
+    /* if (this.nome) {
       if(this.dados.validarMatricula(this.matricula)) {
         this.dados.adicionarAluno(this.nome, this.sexo, this.telefone, this.matricula, this.bilingue, this.cursos);
         this.rota.navigate(['/listar-alunos']);
@@ -37,7 +39,21 @@ export class AdicionarAlunoPage implements OnInit {
       }
     } else {
       this.exibirMensagem('Informe os dados necessários', 3000, 'danger');
-    }
+    } */
+
+    this.dados.adicionarAluno(this.nome, this.sexo, this.telefone, this.matricula, this.bilingue, this.cursosAluno)
+    .then(result => {
+      console.log(result)
+      if(result.ok){
+        this.exibirMensagem('Aluno cadastrado com sucesso', 3000, 'success');
+        this.rota.navigate(['/listar-alunos']);
+      }
+    })
+  }
+
+  cursosSelecionados() {
+    console.log('CURSOS SELECIONADOS')
+    console.log(this.cursosAluno)
   }
 
   async exibirMensagem(mensagem : any, duration : any, color : any) {

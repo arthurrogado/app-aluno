@@ -9,23 +9,31 @@ import { DadosService } from '../services/dados.service';
 })
 export class VisualizarAlunoPage implements OnInit {
 
-  indice : number;
+  id : number;
   aluno : any;
+  cursos : string = '';
 
   constructor(
     public rota : ActivatedRoute,
     public dados : DadosService
   ) { }
 
-  ngOnInit() {
-
+  async ngOnInit() {
+    
     this.rota.params.subscribe((parametros : any) => {
-      this.indice = parametros.id;
+      this.id = parametros.id;
     })
 
-    this.aluno = this.dados.getAlunos()[this.indice];
-    console.log(this.aluno.nome)
+    this.aluno = await this.dados.getAluno(this.id);
+    console.log(this.aluno)
 
+    this.dados.getCursosFromIdAluno(this.id)
+    .then((cursos : any) => {
+      cursos.forEach((curso : any) => {
+        console.log(curso)
+        this.cursos += curso.nome + ', ';
+      })
+    })
   }
 
 }

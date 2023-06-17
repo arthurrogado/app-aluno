@@ -9,12 +9,15 @@ import { Router } from '@angular/router';
 })
 export class ListarAlunosPage implements OnInit {
 
+  id : number;
+
   constructor(
     public dados : DadosService,
     public rota : Router
   ) { }
 
   ngOnInit() {
+    this.dados.placeAlunos();
   }
 
   adicionarAluno() {
@@ -23,22 +26,6 @@ export class ListarAlunosPage implements OnInit {
 
   abrirConfirmacaoExclusao(indice : number) {
     
-  }
-
-  testeApi() {
-    console.log('TESTANDO A API')
-
-    let bodyFd = new FormData();
-    bodyFd.append('acao', 'nome');
-
-    fetch('http://localhost:80/api_ionic/api.php', {
-      method: 'POST',
-      body: bodyFd
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-    })
   }
 
 }

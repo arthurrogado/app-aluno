@@ -5,28 +5,28 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" *ngIf="aluno">
 
   
   <ion-item class="padding-start padding">
-    <ion-input [(ngModel)]="nome" label="Nome:" label-placement="floating" value={{aluno.nome}}></ion-input>
+    <ion-input [(ngModel)]="aluno.nome" label="Nome:" label-placement="floating" value={{aluno.nome}}></ion-input>
   </ion-item>
 
-  <ion-radio-group [(ngModel)]="sexo">
+  <ion-radio-group [(ngModel)]="aluno.sexo">
     
     <ion-item>
       <ion-label>Sexo: </ion-label>
     </ion-item>
 
-    <ion-item>
+    <ion-item id="rbSexo">
       <ion-item slot="start">
         <ion-label for="masculino">Masculino</ion-label>
-        <ion-radio id="masculino" color="dark" value="Masculino" slot="start" aria-label="masculino"></ion-radio>
+        <ion-radio id="masculino" color="dark" value="m" slot="start" aria-label="masculino"></ion-radio>
       </ion-item>
 
       <ion-item slot="end">
         <ion-label slot="end">Feminino</ion-label>
-        <ion-radio color="dark" value="Feminino" slot="end" aria-label="feminino"></ion-radio>
+        <ion-radio id="feminino" color="dark" value="f" slot="end" aria-label="feminino"></ion-radio>
       </ion-item>
 
     </ion-item>
@@ -34,25 +34,21 @@
   </ion-radio-group>
 
   <ion-item>
-    <ion-input [(ngModel)]="telefone" label="Telefone" label-placement="floating"></ion-input>
+    <ion-input [(ngModel)]="aluno.telefone" label="Telefone" label-placement="floating"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-input [(ngModel)]="matricula" label="Matrícula" label-placement="floating"></ion-input>
+    <ion-input [(ngModel)]="aluno.matricula" label="Matrícula" label-placement="floating"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-select [(ngModel)]="cursos" [multiple]="true" label="Cursos TI" label-placement="floating" aria-label="Cursos TI">
-      <ion-select-option value="PHP">PHP</ion-select-option>
-      <ion-select-option value="C#">C#</ion-select-option>
-      <ion-select-option value="Angular">Angular</ion-select-option>
-      <ion-select-option value="Java">Java</ion-select-option>
-      <ion-select-option value="Python">Python</ion-select-option>
+    <ion-select [(ngModel)]="cursosAluno" id="cursos" [multiple]="true" label="Cursos TI" label-placement="floating" aria-label="Cursos TI">
+      <ion-select-option *ngFor="let curso of cursos" [value]="curso.id"> {{curso.nome}} </ion-select-option>
     </ion-select>
   </ion-item>
 
   <ion-item>
-    <ion-toggle [(ngModel)]="bilingue" [checked]="false" >Bilíngue?</ion-toggle>
+    <ion-toggle [(ngModel)]="aluno.bilingue" >Bilíngue?</ion-toggle>
   </ion-item>
 
 
@@ -60,5 +56,7 @@
     <ion-icon name="add-circle-outline"></ion-icon>
     Editar
   </ion-button>
+  
+  <ion-button (click)="teste()">Teste</ion-button>
 
 </ion-content>

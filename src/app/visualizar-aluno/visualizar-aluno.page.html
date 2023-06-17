@@ -1,6 +1,8 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-back-button routerLink="/listar-alunos" slot="start"></ion-back-button>
+    <ion-button routerLink="/listar-alunos" slot="start" fill="clear">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </ion-button>
     <ion-title>Visualizar Aluno</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -15,7 +17,7 @@
 
     </ion-card-header>
     <ion-card-content>
-      <ion-list>
+      <ion-list *ngIf="aluno">
         <ion-item>
           <ion-label>Nome: {{aluno.nome}}</ion-label>
         </ion-item>
@@ -37,7 +39,7 @@
         </ion-item>
 
         <ion-item>
-          <ion-label>Cursos: {{aluno.cursos}}</ion-label>
+          <ion-label>Cursos: {{cursos}}</ion-label>
         </ion-item>        
 
       </ion-list>
